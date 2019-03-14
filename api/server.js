@@ -20,4 +20,14 @@ server.get('/teams', async (req, res) => {
     }
 })
 
+server.post('/teams', async (req, res) => {
+    try {
+        const team = await teams.insert(req.body)
+
+        res.status(201).json(team)
+    } catch (error) {
+        res.status(500).json(error)
+    }
+})
+
 module.exports = server;

@@ -8,6 +8,7 @@ describe('server', () => {
     });
 });
 
+// GET REQUEST TEST
 describe('Get /', () => {
     it('should return 200 ok', () => {
         return request(server)
@@ -23,6 +24,24 @@ describe('Get /', () => {
             .get('/')
             .then(res => {
                 expect(res.body).toEqual({ message: "Server Running" })
+            })
+            .catch()
+    })
+
+    it('should return 200', () => {
+        return request(server)
+            .get('/teams')
+            .then(res => {
+                expect(res.status).toBe(200)
+            })
+            .catch()
+    })
+
+    it('should return [teams]', () => {
+        return request(server)
+            .get('/teams')
+            .then(res => {
+                expect(res.body).toEqual([])
             })
             .catch()
     })
